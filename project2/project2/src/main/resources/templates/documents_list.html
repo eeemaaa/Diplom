@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Список документов</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .table {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Список документов</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Выйти</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <h2 class="text-center">Список документов</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Document Name</th>
+            <th>Author</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Creation Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="document : ${documents}">
+            <td th:text="${document.id}">1</td>
+            <td th:text="${document.documentName}">Document Name</td>
+            <td th:text="${document.author}">Author</td>
+            <td th:text="${document.description}">Description</td>
+            <td th:text="${document.category}">Category</td>
+            <td th:text="${document.creationDate}">Creation Date</td>
+            <td>
+                <a th:href="@{/documents/edit/{id}(id=${document.id})}" class="btn btn-secondary">Редактировать</a>
+                <form th:action="@{/documents/delete/{id}(id=${document.id})}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

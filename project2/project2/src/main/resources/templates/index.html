@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Документооборот</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Документооборот</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/documents">Список документов</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">О системе</a>
+                </li>
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Выход</a>
+                </li>
+
+            </ul>
+
+            <form class="d-flex" action="/search" method="get">
+                <input class="form-control me-2" type="search" placeholder="Поиск " aria-label="Search" name="query">
+                <button class="btn btn-outline-success" type="submit">Поиск</button>
+            </form>
+            <!-- Кнопка Вход -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="btn btn-secondary" href="/login">Вход</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2 class="mb-3 text-center">Поиск документов</h2>
+            <form action="/search" method="get"> <!-- Предполагаем, что обработчик находится на /search -->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Введите название документа, автора или категорию" name="query">
+                    <button class="btn btn-outline-secondary" type="submit">Поиск</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8 offset-md-2">
+            <h2 class="mb-3 text-center">Загрузите Ваш документ</h2>
+            <form action="/documentUpload" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <input type="file" class="form-control" name="doc" required>
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="author" placeholder="Автор" required>
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" name="description" placeholder="Описание" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="category" placeholder="Категория" required>
+                </div>
+                <div class="mb-3">
+                    <input type="date" class="form-control" name="creationDate" placeholder="Дата создания" required>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Загрузить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

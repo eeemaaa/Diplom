@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Документы</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Документы</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/documents">Список документов</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">О системе</a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Выход</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h1>Список документов</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Автор</th>
+            <th>Описание</th>
+            <th>Категория</th>
+            <th>Дата создания</th>
+            <th>Загрузил</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="document : ${documents}">
+            <td th:text="${document.id}"></td>
+            <td th:text="${document.documentName}"></td>
+            <td th:text="${document.author}"></td>
+            <td th:text="${document.description}"></td>
+            <td th:text="${document.category}"></td>
+            <td th:text="${document.creationDate}"></td>
+            <td th:text="${document.user != null ? document.user.username : 'Неизвестно'}"></td>
+            <td>
+                <a th:href="@{/download/{id}(id=${document.id})}" class="btn btn-primary">Скачать</a>
+                <a th:href="@{/preview/{id}(id=${document.id})}" class="btn btn-secondary">Предпросмотр</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

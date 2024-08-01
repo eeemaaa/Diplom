@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Документооборот</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/documents">Список документов</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">О системе</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">Профиль</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Настройки
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="/settings">Общие настройки</a></li>
+                        <li><a class="dropdown-item" href="/privacy">Конфиденциальность</a></li>
+                        <li><a class="dropdown-item" href="/notifications">Уведомления</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/help">Помощь</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Выход</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h1>Welcome</h1>
+    <p th:text="${message}"></p>
+
+    <!-- Кнопка для загрузки документов -->
+    <h2 class="mb-3 text-center">Загрузите Ваш документ</h2>
+    <form action="/documentUpload" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <input type="file" class="form-control" name="doc" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" name="author" placeholder="Автор" required>
+        </div>
+        <div class="mb-3">
+            <textarea class="form-control" name="description" placeholder="Описание" required></textarea>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" name="category" placeholder="Категория" required>
+        </div>
+        <div class="mb-3">
+            <input type="date" class="form-control" name="creationDate" placeholder="Дата создания" required>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Загрузить</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
